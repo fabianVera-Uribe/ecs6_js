@@ -16,6 +16,13 @@ function deObjetoAmatriz(objeto) {
       C: 3
     }) ➞ [["D", 1], ["B", 2], ["C", 3]]*/
   //Escribe tu código aquí
+  /*
+  const arr = []
+  for(const obj in objeto) {
+    arr.push([obj, objeto[objeto]])
+    return arr
+  }
+  */
   let arr = Object.entries(objeto);
   return arr;
 }
@@ -25,6 +32,15 @@ function numberOfCharacters(string) {
   //en formato par clave-valor.
   //Ej: Recibe ---> "adsjfdsfsfjsdjfhacabcsbajda" || Devuelve ---> { a: 5, b: 2, c: 2, d: 4, f: 4, h:1, j: 4, s: 5 }
   //Escribe tu código aquí
+  const obj = {};
+  for (let i = 0; i < string.length; i++) {
+    if (Object.keys(obj).includes(string[i])) {
+      obj[string[i]] = obj[string[i]] + 1;
+      continue;
+    }
+    obj[string[i]] = 1;
+  }
+  return obj;
 }
 
 function capToFront(s) {
@@ -32,6 +48,17 @@ function capToFront(s) {
   //al principio de la palabra.
   //Ejemplo: soyHENRY -> HENRYsoy
   //Escribe tu código aquí
+  let strMay = "";
+  let strMin = "";
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === s[i].toUpperCase()) {
+      strMay += s[i];
+    } else {
+      strMin += s[i];
+    }
+  }
+  return strMay + strMin;
 }
 
 function asAmirror(str) {
@@ -40,16 +67,12 @@ function asAmirror(str) {
   //pero con cada una de sus palabras invertidas, como si fuera un espejo.
   //Ej: Recibe ---> "The Henry Challenge is close!" || Devuelve ---> "ehT yrneH egnellahC si !esolc"
   //Escribe tu código aquí
-  let palabrasSueltas = str.split(" ");
-  let newArr = [];
+  let palabrasSueltas = str.split("").reverse().join("");
   console.log(palabrasSueltas);
 
-  palabrasSueltas.forEach((palabra) => {
-    newArr.push(palabra.reverse());
-  });
-
-  return newArr.join(" ");
+  return palabrasSueltas.split(" ").reverse().join(" ");
 }
+console.log(asAmirror("The Henry Challenge is close!"));
 
 function capicua(numero) {
   //Escribe una función, la cual recibe un número y determina si es o no capicúa.
@@ -57,7 +80,7 @@ function capicua(numero) {
   //izquierda a derecha que de derecha a izquierda. Caso contrario retorna "No es capicua"
   //Escribe tu código aquí
   let numString = numero.toString();
-  return numString.reverse() == numero;
+  return numString.split("").reverse().join("") == numero;
 }
 
 function deleteAbc(cadena) {
